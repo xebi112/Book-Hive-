@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Hive</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header-container">
+      <h3>Book Hive</h3>
+      <input
+        type="text"
+        placeholder="Search Book"
+        class="search-box"
+        id="searchBox"
+      />
+    </header>
+
+    <!-- Slideshow -->
+
+    <section class="slide-img" id="slides">
+      <img src="Soul.jpeg" alt="Book cover 1" />
+      <img src="photo_2025-12-06_11-32-30.jpg" alt="Book cover 2" />
+      <img src="photo_2025-12-06_11-49-38.jpg" alt="Book cover 3" />
+      <div class="overlay">Overlay text here</div>
+    </section>
+    <div id="search-results" class="category-section"></div>
+
+    <main id="book-container">
+      <div id="fiction-container" class="category-section">
+        <h2>Fiction</h2>
+      </div>
+      <div id="history-container" class="category-section">
+        <h2>History</h2>
+      </div>
+      <div id="science-container" class="category-section">
+        <h2>Science</h2>
+      </div>
+      <div id="horror-container" class="category-section"><h2>Horror</h2></div>
+      <div id="computers-container" class="category-section">
+        <h2>Computers</h2>
+      </div>
+      <div id="BE-container" class="category-section">
+        <h2>Business & Economics</h2>
+      </div>
+      <div id="BA-container" class="category-section">
+        <h2>Biography & Autobiography</h2>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="config.js"></script>
+  </body>
+</html>

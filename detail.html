@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Detail</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="detail"></div>
+
+    <script>
+      const param = new URLSearchParams(window.location.search);
+      let BookC = param.get("cover");
+      document.getElementById("detail").innerHTML = `
+     <div class="book-detail">
+      <img src="https://covers.openlibrary.org/b/id/${BookC}-M.jpg">
+      </div>
+     `;
+    </script>
+  </body>
+</html>
