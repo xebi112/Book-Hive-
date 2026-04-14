@@ -11,14 +11,46 @@
 
     <script>
       const param = new URLSearchParams(window.location.search);
-      let BookId = param.get("id");
-      const imgUrl = `http://books.google.com/books/content?id=${BookId}&printsec=frontcover&img=1&zoom=1&edge=curl`;
-      document.getElementById("detail").innerHTML = `
-     <div class="book-detail">
-      <img src="${imgUrl}>"
 
+      let BookId = param.get("id");
+
+      // 1. Rebuild the High-Res Image
+      const imgUrl = `https://books.google.com/books/content?id=${BookId}&printsec=frontcover&img=1&zoom=2`;
+
+      // 2. Fetch the extra details using the ID
+      fetch(`https://www.googleapis.com/books/v1/volumes/${BookId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          const info = data.volumeInfo;
+
+          document.getElementById("detail").innerHTML = `
+  <div class="glass-container">
+    <div class="preview-layout">
+      
+      <div class="left-side">
+        <img src="${imgUrl}" class="main-cover">
+        <div class="meta-data">
+          <h1 class="title">${info.title}</h1>
+          <h4 class="subtitle">${info.subtitle || ""}</h4>
+          <p class="author">By: ${info.authors ? info.authors.join(", ") : "Unknown"}</p>
+        </div>
       </div>
-     `;
+
+      <div class="right-side">
+        <h3>Description</h3>
+        <div class="description-text">
+          ${info.description || "No description provided for this book."}
+        </div>
+        <div class="actions">
+          <a href="${info.previewLink}" target="_blank" class="read-btn">Read Preview</a>
+          <a href="index.html" class="back-link">Back to Hive</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+`;
+        });
     </script>
   </body>
 </html>
