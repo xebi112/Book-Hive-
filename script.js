@@ -15,6 +15,7 @@ async function fetchBook(category, bookshelfId) {
 
     if (!response.ok) throw new Error("Fetch failed");
     const data = await response.json();
+    console.log(data);
     if (!data.items) return;
 
     const grid = document.createElement("div");
@@ -33,6 +34,9 @@ async function fetchBook(category, bookshelfId) {
         <img src="${thumb}" alt="book cover"/>
         <p>${info.title}</p>
       `;
+      bookdisplay.addEventListener("click", () => {
+        window.location.href = `Preview.html?id=${s.id}`;
+      });
       grid.appendChild(bookdisplay);
     });
 
@@ -81,6 +85,7 @@ async function searchBook(query) {
           <img src="${thumb}" alt="book cover"/>
           <p>${volumeInfo.title}</p>
         `;
+
         grid.appendChild(bookCard);
       });
       search.appendChild(grid);

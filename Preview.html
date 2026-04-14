@@ -11,10 +11,12 @@
 
     <script>
       const param = new URLSearchParams(window.location.search);
-      let BookC = param.get("cover");
+      let BookId = param.get("id");
+      const imgUrl = `http://books.google.com/books/content?id=${BookId}&printsec=frontcover&img=1&zoom=1&edge=curl`;
       document.getElementById("detail").innerHTML = `
      <div class="book-detail">
-      <img src="https://covers.openlibrary.org/b/id/${BookC}-M.jpg">
+      <img src="${imgUrl}>"
+
       </div>
      `;
     </script>
