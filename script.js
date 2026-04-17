@@ -15,7 +15,7 @@ async function fetchBook(category, bookshelfId) {
 
     if (!response.ok) throw new Error("Fetch failed");
     const data = await response.json();
-    console.log(data);
+
     if (!data.items) return;
 
     const grid = document.createElement("div");
@@ -31,6 +31,10 @@ async function fetchBook(category, bookshelfId) {
         : "https://via.placeholder.com/150x200?text=No+Cover";
 
       bookdisplay.innerHTML = `
+      
+<div class="fav-book">
+        <i class="fa-regular fa-star" id="favorite-btn"></i>
+      </div>
         <img src="${thumb}" alt="book cover"/>
         <p>${info.title}</p>
       `;
@@ -38,6 +42,10 @@ async function fetchBook(category, bookshelfId) {
         window.location.href = `Preview.html?id=${s.id}`;
       });
       grid.appendChild(bookdisplay);
+
+      //STAR TOGGLE
+      const favDiv = document.querySelector(".fav-book");
+      const favBtn = document.getElementById("favorite-btn");
     });
 
     shelf.appendChild(grid);
