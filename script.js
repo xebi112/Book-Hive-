@@ -33,7 +33,7 @@ async function fetchBook(category, bookshelfId) {
       bookdisplay.innerHTML = `
       
 <div class="fav-book">
-        <i class="fa-regular fa-star" id="favorite-btn"></i>
+        <i class="fa-solid fa-star"></i>
       </div>
         <img src="${thumb}" alt="book cover"/>
         <p>${info.title}</p>
@@ -44,8 +44,13 @@ async function fetchBook(category, bookshelfId) {
       grid.appendChild(bookdisplay);
 
       //STAR TOGGLE
-      const favDiv = document.querySelector(".fav-book");
-      const favBtn = document.getElementById("favorite-btn");
+      const favBtn = bookdisplay.querySelector(".fa-star");
+
+      favBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        favBtn.style.color = favBtn.style.color === "gold" ? "white" : "gold";
+        window.location.href = `favbook.html?id=${s.id}`;
+      });
     });
 
     shelf.appendChild(grid);
