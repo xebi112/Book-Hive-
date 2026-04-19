@@ -46,10 +46,28 @@ async function fetchBook(category, bookshelfId) {
       //STAR TOGGLE
       const favBtn = bookdisplay.querySelector(".fa-star");
 
+      // Replace your existing star event listener with this:
       favBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
+        e.stopPropagation(); // Stops the card from opening Preview.html
+
+        // Toggle color
         favBtn.style.color = favBtn.style.color === "gold" ? "white" : "gold";
-        window.location.href = `favbook.html?id=${s.id}`;
+
+        // Prepare book data
+        const bookData = {
+          id: s.id,
+          title: info.title,
+          img: thumb, // This is the 'thumb' variable from your code
+        };
+
+        // Save to LocalStorage (The "Under the Hood" transfer)
+        let favorites = JSON.parse(localStorage.getItem("myHiveFavs")) || [];
+
+        // Add to list
+        favorites.push(bookData);
+        localStorage.setItem("myHiveFavs", JSON.stringify(favorites));
+
+        console.log("Book added to favorites list!");
       });
     });
 

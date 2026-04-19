@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <h1>My Favorite Books</h1>
+    <div id="favorite"></div>
+
+    <script>
+      function showFavBooks() {
+        const favContainer = document.getElementById("favorite");
+        // Get the list from the "Shared Folder"
+        const favorites = JSON.parse(localStorage.getItem("myHiveFavs")) || [];
+
+        if (favorites.length > 0) {
+          favorites.forEach((book) => {
+            favContainer.innerHTML += `
+              <div class="fav-card">
+                <img src="${book.img}" alt="${book.title}"/>
+                <p>${book.title}</p>
+              </div>
+            `;
+          });
+        } else {
+          favContainer.innerHTML = `<p>No books added to favorites yet.</p>`;
+        }
+      }
+
+      showFavBooks();
+    </script>
+  </body>
+</html>

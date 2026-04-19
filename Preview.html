@@ -15,10 +15,10 @@
       let BookId = param.get("id");
 
       // 1. Rebuild the High-Res Image
-      const imgUrl = `https://books.google.com/books/content?id=${BookId}&printsec=frontcover&img=1&zoom=2`;
+      const imgUrl = `https://books.google.com/books/content?id=${BookId}&printsec=frontcover&img=1&zoom=2`; //for the img
 
       // 2. Fetch the extra details using the ID
-      fetch(`https://www.googleapis.com/books/v1/volumes/${BookId}`)
+      fetch(`https://www.googleapis.com/books/v1/volumes/${BookId}`) //fetch by id
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
