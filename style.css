@@ -264,6 +264,26 @@ body {
   color: rgb(37, 21, 21);
   font-size: 1.2rem;
 }
+.overla {
+  display: none;
+  position: fixed; /* important for full screen centering */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: #020617;
+  color: #ef4444;
+
+  padding: 20px 30px;
+  border-radius: 12px;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+  z-index: 9999;
+}
 
 /* Responsive: Stack them on mobile */
 @media (max-width: 768px) {

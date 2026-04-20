@@ -1,30 +1,64 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
   <body>
     <h1>My Favorite Books</h1>
     <div id="favorite"></div>
+    <button id="del">del</button>
 
-    <script>
-      function showFavBooks() {
-        const favContainer = document.getElementById("favorite");
-        // Get the list from the "Shared Folder"
-        const favorites = JSON.parse(localStorage.getItem("myHiveFavs")) || [];
+    
 
-        if (favorites.length > 0) {
-          favorites.forEach((book) => {
-            favContainer.innerHTML += `
-              <div class="fav-card">
-                <img src="${book.img}" alt="${book.title}"/>
-                <p>${book.title}</p>
-              </div>
-            `;
-          });
-        } else {
-          favContainer.innerHTML = `<p>No books added to favorites yet.</p>`;
-        }
-      }
+      <script>
+function showFavBooks() {
+  const favContainer = document.getElementById("favorite");
 
-      showFavBooks();
+  let favorites = JSON.parse(localStorage.getItem("myHiveFavs")) || [];
+
+  favContainer.innerHTML = ""; // clear before rendering
+
+  if (favorites.length > 0) {
+    favorites.forEach((book) => {
+      const card = document.createElement("div");
+      card.classList.add("fav-card");
+
+      card.innerHTML = `
+        <img src="${book.img}" alt="${book.title}"/>
+        <p>${book.title}</p>
+        <button class="del-btn">del</button>
+      `;
+
+      const delBtn = card.querySelector(".del-btn");
+
+      delBtn.addEventListener("click", () => {
+        // REMOVE book
+        favorites = favorites.filter((b) => b.id !== book.id);
+
+        // SAVE updated list
+        localStorage.setItem("myHiveFavs", JSON.stringify(favorites));
+
+        // RE-RENDER UI
+        showFavBooks();
+      });
+
+      favContainer.appendChild(card);
+    });
+  } else {
+    favContainer.innerHTML = `<p>No books added to favorites yet.</p>`;
+  }
+}
+
+showFavBooks();
+</script>
     </script>
   </body>
 </html>

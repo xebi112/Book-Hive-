@@ -2,7 +2,7 @@
 
 const APIKEY = CONFIG.APIKEY;
 const BaseUrl = "https://www.googleapis.com/books/v1/volumes";
-
+let overlay = document.querySelector(".overla");
 // --- CATEGORY FETCHING ---
 async function fetchBook(category, bookshelfId) {
   const shelf = document.getElementById(bookshelfId);
@@ -61,13 +61,22 @@ async function fetchBook(category, bookshelfId) {
         };
 
         // Save to LocalStorage (The "Under the Hood" transfer)
-        let favorites = JSON.parse(localStorage.getItem("myHiveFavs")) || [];
+
+        let favorites = JSON.parse(localStorage.getItem("myHiveFavs")) || []; //READ ITEMS
 
         // Add to list
         favorites.push(bookData);
-        localStorage.setItem("myHiveFavs", JSON.stringify(favorites));
 
-        console.log("Book added to favorites list!");
+        localStorage.setItem("myHiveFavs", JSON.stringify(favorites)); // SAVE ITEMS
+
+        if (favBtn) {
+          overlay.style.display = "flex";
+        } else {
+          overlay.style.display = "none";
+        }
+        setTimeout(() => {
+          overlay.style.display = "none";
+        }, 3000);
       });
     });
 
